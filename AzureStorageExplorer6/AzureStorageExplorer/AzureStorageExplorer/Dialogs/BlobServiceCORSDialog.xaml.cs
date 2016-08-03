@@ -117,14 +117,17 @@ namespace AzureStorageExplorer
                     }
                     foreach(String origin in origins)
                     {
-                        try
+                        if (origin != "*")
                         {
-                            Uri uri = new Uri(origin);
-                        }
-                        catch(Exception ex)
-                        {
-                            MessageBox.Show("Error: Rule " + count.ToString() + " contains an invalid Allowed Origin '" + origin + "'. An Allowed Origin must be a value URI.", "CORS Rule Error");
-                            return;
+                            try
+                            {
+                                Uri uri = new Uri(origin);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error: Rule " + count.ToString() + " contains an invalid Allowed Origin '" + origin + "'. An Allowed Origin must be a value URI.", "CORS Rule Error");
+                                return;
+                            }
                         }
                     }
 
